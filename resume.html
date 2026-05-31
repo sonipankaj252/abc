@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pankaj Soni - Portfolio Resume</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Base Themes & Reset */
+        :root {
+            --primary-color: #0f172a; /* Deep Navy */
+            --secondary-color: #1e3a8a; /* Royal Blue */
+            --accent-color: #3b82f6; /* Bright Blue */
+            --text-dark: #1e293b;
+            --text-light: #64748b;
+            --bg-light: #f8fafc;
+            --white: #ffffff;
+            --border-color: #e2e8f0;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-light);
+            color: var(--text-dark);
+            line-height: 1.6;
+            padding-top: 70px; /* Offset for sticky nav */
+        }
+
+        /* 1. Top Navigation Bar */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: var(--primary-color);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+            height: 70px;
+        }
+
+        .navbar .logo {
+            color: var(--white);
+            font-size: 1.25rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-links li a {
+            color: #cbd5e1;
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links li a:hover {
+            color: var(--white);
+        }
+
+        /* Main Layout Grid */
+        .container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+            display: grid;
+            grid-template-columns: 350px 1fr;
+            gap: 2rem;
+        }
+
+        /* 2. Left Sidebar */
+        .sidebar {
+            background-color: var(--white);
+            border-radius: 12px;
+            padding: 2.5rem 2rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+            position: sticky;
+            top: 90px;
+            height: fit-content;
+            text-align: center;
+            border-top: 5px solid var(--secondary-color);
+        }
+
+        .profile-img-placeholder {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            background-color: #e2e8f0;
+            margin: 0 auto 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 4px solid var(--bg-light);
+            overflow: hidden;
+        }
+
+        .profile-img-placeholder i {
+            font-size: 4rem;
+            color: var(--text-light);
+        }
+
+        .sidebar h1 {
+            font-size: 1.75rem;
+            color: var(--primary-color);
+            margin-bottom: 0.25rem;
+        }
+
+        .sidebar .subtitle {
+            color: var(--accent-color);
+            font-weight: 600;
+            text-transform: uppercase;
+            font-size: 0.85rem;
+            letter-spacing: 1px;
+            margin-bottom: 2rem;
+        }
+
+        .contact-info {
+            text-align: left;
+            border-top: 1px solid var(--border-color);
+            padding-top: 1.5rem;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1rem;
+            color: var(--text-dark);
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        .contact-item:hover {
+            color: var(--accent-color);
+        }
+
+        .contact-item i {
+            width: 30px;
+            font-size: 1.1rem;
+            color: var(--secondary-color);
+        }
+
+        /* 3. Right Main Content Section */
+        .main-content {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .card {
+            background-color: var(--white);
+            border-radius: 12px;
+            padding: 2.5rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+        }
+
+        .section-title {
+            font-size: 1.5rem;
+            color: var(--primary-color);
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--border-color);
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .section-title i {
+            color: var(--secondary-color);
+        }
+
+        /* Timeline Items (Experience & Education) */
+        .timeline {
+            position: relative;
+            border-left: 2px solid var(--border-color);
+            padding-left: 1.5rem;
+            margin-left: 0.5rem;
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 2rem;
+        }
+
+        .timeline-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: calc(-1.5rem - 7px);
+            top: 6px;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background-color: var(--accent-color);
+            border: 2px solid var(--white);
+        }
+
+        .timeline-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            flex-wrap: wrap;
+            margin-bottom: 0.5rem;
+        }
+
+        .job-title {
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: var(--primary-color);
+        }
+
+        .company-name {
+            font-size: 1rem;
+            color: var(--secondary-color);
+            font-weight: 600;
+        }
+
+        .timeline-date {
+            font-size: 0.875rem;
+            color: var(--text-light);
+            background-color: var(--bg-light);
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-weight: 500;
+        }
+
+        .timeline-desc {
+            color: var(--text-light);
+            font-size: 0.95rem;
+            margin-top: 0.5rem;
+        }
+
+        .timeline-desc ul {
+            margin-top: 0.5rem;
+            padding-left: 1.25rem;
+        }
+
+        .timeline-desc li {
+            margin-bottom: 0.25rem;
+        }
+
+        /* Project Cards */
+        .project-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .project-card {
+            background-color: var(--bg-light);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 1.5rem;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .project-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05);
+        }
+
+        .project-card h4 {
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+        }
+
+        .project-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--accent-color);
+            text-decoration: none;
+            font-size: 0.875rem;
+            font-weight: 600;
+            margin-top: 1rem;
+        }
+
+        /* 4. Interactive Skills Section */
+        .filter-buttons {
+            display: flex;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .filter-btn {
+            background-color: var(--bg-light);
+            border: 1px solid var(--border-color);
+            padding: 0.5rem 1.25rem;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 500;
+            color: var(--text-dark);
+            transition: all 0.2s;
+        }
+
+        .filter-btn.active, .filter-btn:hover {
+            background-color: var(--secondary-color);
+            color: var(--white);
+            border-color: var(--secondary-color);
+        }
+
+        .skills-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+        }
+
+        .skill-tag {
+            background-color: var(--bg-light);
+            border: 1px solid var(--border-color);
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: var(--text-dark);
+            transition: all 0.3s ease;
+        }
+
+        /* Responsive Breakpoints */
+        @media (max-width: 968px) {
+            .container {
+                grid-template-columns: 1fr;
+            }
+            .sidebar {
+                position: relative;
+                top: 0;
+            }
+            .timeline-header {
+                flex-direction: column;
+                gap: 0.25rem;
+            }
+            .timeline-date {
+                align-self: flex-start;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="logo">ER. PANKAJ SONI</div>
+        <ul class="nav-links">
+            <li><a href="#experience">Experience</a></li>
+            <li><a href="#education">Education</a></li>
+            <li><a href="#skills">Skills</a></li>
+            <li><a href="#projects">Projects</a></li>
+        </ul>
+    </nav>
+
+    <div class="container">
+        
+        <aside class="sidebar">
+            <div class="profile-img-placeholder">
+                <i class="fa-solid fa-user-tie"></i>
+            </div>
+            <h1>Pankaj Soni</h1>
+            <div class="subtitle">Full Stack Developer & IT Head</div>
+            
+            <div class="contact-info">
+                <a href="tel:+919929190411" class="contact-item">
+                    <i class="fa-solid fa-phone"></i> +91-9929190411
+                </a>
+                <a href="mailto:sonipankaj.252@gmail.com" class="contact-item">
+                    <i class="fa-solid fa-envelope"></i> sonipankaj.252@gmail.com
+                </a>
+                <div class="contact-item" style="cursor: default; hover: none;">
+                    <i class="fa-solid fa-location-dot"></i> 
+                    <span>Sunaron Ki Ghati, Near Balaji Temple, Jodhpur, Rajasthan</span>
+                </div>
+                <div class="contact-item" style="cursor: default;">
+                    <i class="fa-solid fa-language"></i>
+                    <span>Hindi (Native), English (Proficient)</span>
+                </div>
+            </div>
+        </aside>
+
+        <main class="main-content">
+            
+            <section id="experience" class="card">
+                <h2 class="section-title"><i class="fa-solid fa-briefcase"></i> Work Experience</h2>
+                <div class="timeline">
+                    
+                    <div class="timeline-item">
+                        <div class="timeline-header">
+                            <div>
+                                <div class="job-title">IT Head / AI & Computer Teacher</div>
+                                <div class="company-name">Global Indian International School</div>
+                            </div>
+                            <span class="timeline-date">April 2022 - Present</span>
+                        </div>
+                        <div class="timeline-desc">
+                            Leading IT operations, managing smart classrooms, and teaching AI and Computer Science.
+                            <ul>
+                                <li>Integrated digital tools into the curriculum and conducted coding workshops.</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-header">
+                            <div>
+                                <div class="job-title">IT Manager / Branch Manager (Part-time ongoing)</div>
+                                <div class="company-name">Shri Ram Hospital</div>
+                            </div>
+                            <span class="timeline-date">April 2021 - Present</span>
+                        </div>
+                        <div class="timeline-desc">
+                            Oversaw hospital software systems and managed IT infrastructure. Handled patient record digitization, server backups, and network troubleshooting.
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-header">
+                            <div>
+                                <div class="job-title">IT Manager & Front End Developer</div>
+                                <div class="company-name">RSM International School (CBSE Affiliated)</div>
+                            </div>
+                            <span class="timeline-date">02/2019 - 04/2021</span>
+                        </div>
+                        <div class="timeline-desc">
+                            Managed and modified school management software as required. Created interactive systems for parents for IX to XII CBSE registrations alongside general graphic designing workflows.
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-header">
+                            <div>
+                                <div class="job-title">Full Stack Developer</div>
+                                <div class="company-name">Vimla Jewellers</div>
+                            </div>
+                            <span class="timeline-date">08/2010 - 01/2019</span>
+                        </div>
+                        <div class="timeline-desc">
+                            Developed "Gold One" ERP system managing Customer Relations, Production, Stock, Billing, and Staff Management. Developed desktop applications for gold exchange workflows and engineered custom embedded systems to bridge data communications between electronic balances.
+                        </div>
+                    </div>
+
+                </div>
+            </section>
+
+            <section id="faculty" class="card">
+                <h2 class="section-title"><i class="fa-solid fa-chalkboard-user"></i> Higher Education Contribution</h2>
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-header">
+                            <div>
+                                <div class="job-title">Guest Faculty</div>
+                                <div class="company-name">MBM Engineering College, Jodhpur</div>
+                            </div>
+                            <span class="timeline-date">3 Years</span>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-header">
+                            <div>
+                                <div class="job-title">Guest Faculty (FINTECH)</div>
+                                <div class="company-name">Jai Narain Vyas University (Commerce Dept.)</div>
+                            </div>
+                            <span class="timeline-date">3 Years</span>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-header">
+                            <div>
+                                <div class="job-title">ITT & Advanced ITT Faculty</div>
+                                <div class="company-name">The Institute of Chartered Accountants of India (ICAI)</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="skills" class="card">
+                <h2 class="section-title"><i class="fa-solid fa-code"></i> Professional Skills</h2>
+                <div class="filter-buttons">
+                    <button class="filter-btn active" onclick="filterSkills('all')">All Skills</button>
+                    <button class="filter-btn" onclick="filterSkills('advanced')">Advanced</button>
+                    <button class="filter-btn" onclick="filterSkills('intermediate')">Intermediate</button>
+                </div>
+                <div class="skills-grid" id="skills-container">
+                    <span class="skill-tag" data-level="advanced">VB.Net</span>
+                    <span class="skill-tag" data-level="advanced">SQL Server</span>
+                    <span class="skill-tag" data-level="advanced">ASP.net</span>
+                    <span class="skill-tag" data-level="advanced">C</span>
+                    <span class="skill-tag" data-level="advanced">HTML</span>
+                    <span class="skill-tag" data-level="advanced">Kodular</span>
+                    <span class="skill-tag" data-level="advanced">Firebase</span>
+                    <span class="skill-tag" data-level="advanced">AI Tools</span>
+                    <span class="skill-tag" data-level="advanced">Robotics</span>
+                    <span class="skill-tag" data-level="advanced">Excel</span>
+                    <span class="skill-tag" data-level="advanced">Photoshop</span>
+                    <span class="skill-tag" data-level="advanced">Python</span>
+                    <span class="skill-tag" data-level="intermediate">Xamarin</span>
+                    <span class="skill-tag" data-level="intermediate">CSS</span>
+                    <span class="skill-tag" data-level="intermediate">JavaScript</span>
+                    <span class="skill-tag" data-level="intermediate">CorelDraw</span>
+                </div>
+            </section>
+
+            <section id="projects" class="card">
+                <h2 class="section-title"><i class="fa-solid fa-cubes"></i> Projects & Products</h2>
+                <div class="project-grid">
+                    <div class="project-card">
+                        <h4>Bhakti Sarower</h4>
+                        <p class="timeline-desc">Devoted Android Application developed built via Kodular ecosystem catering to local community needs.</p>
+                        <a href="https://play.google.com/store/apps/details?id=io.kodular.shreehari0291.Bhakti_Sarower" target="_blank" class="project-link">View on Google Play <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+                    </div>
+                    <div class="project-card">
+                        <h4>Tabla Dholak Loops</h4>
+                        <p class="timeline-desc">An interactive Android Mobile application built for percussion backing loops. Proudly serving an active user base of 30,000+ users.</p>
+                    </div>
+                    <div class="project-card">
+                        <h4>Gold One ERP</h4>
+                        <p class="timeline-desc">Custom integrated enterprise management solution specializing in jeweler CRM, production line logistics, stock tracking, and automated billing.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="education" class="card">
+                <h2 class="section-title"><i class="fa-solid fa-graduation-cap"></i> Education</h2>
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-header">
+                            <div>
+                                <div class="job-title">M. Tech. in Computer Science</div>
+                                <div class="company-name">Jodhpur National University</div>
+                            </div>
+                            <span class="timeline-date">Software Engineering</span>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-header">
+                            <div>
+                                <div class="job-title">B. Tech. in Computer Science</div>
+                                <div class="company-name">JIET</div>
+                            </div>
+                            <span class="timeline-date">Bachelors Degree</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+        </main>
+    </div>
+
+    <script>
+        function filterSkills(level) {
+            // Update active state on buttons
+            const buttons = document.querySelectorAll('.filter-btn');
+            buttons.forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+
+            // Filter item tags
+            const tags = document.querySelectorAll('.skill-tag');
+            tags.forEach(tag => {
+                if (level === 'all') {
+                    tag.style.display = 'inline-block';
+                } else {
+                    if (tag.getAttribute('data-level') === level) {
+                        tag.style.display = 'inline-block';
+                    } else {
+                        tag.style.display = 'none';
+                    }
+                }
+            });
+        }
+    </script>
+</body>
+</html>
